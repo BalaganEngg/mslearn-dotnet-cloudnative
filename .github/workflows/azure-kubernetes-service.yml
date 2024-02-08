@@ -35,14 +35,14 @@ jobs:
         run: |
           az acr build --file ${{ env.DOCKER_PATH }} --image ${{ env.AZURE_CONTAINER_REGISTRY }}.azurecr.io/${{ env.CONTAINER_NAME }}:${{ github.sha }} --registry ${{ env.AZURE_CONTAINER_REGISTRY }} -g ${{ env.RESOURCE_GROUP }} .
 
-deploy:
-  permissions:
-    actions: read
-    contents: read
-    id-token: write
-  runs-on: ubuntu-latest
-  needs: [buildImage]
-  steps:
+  deploy:
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    needs: [buildImage]
+    steps:
     # Checks out the repository this file is in
     - uses: actions/checkout@v3
 
